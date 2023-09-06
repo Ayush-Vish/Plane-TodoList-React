@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import TodoDispatchContext from "../../context/TodoDispatchContext"
 
-function AddToDo ({updateList }) {
+function AddToDo () {
 
     const [inputText, setInputText] =useState("")
+    const {dispatch } = useContext(TodoDispatchContext)
     return (
         <div>
             <input type="text"
@@ -11,8 +13,8 @@ function AddToDo ({updateList }) {
             onChange={(e)=> setInputText(e.target.value)}
              />
             <button onClick={()=> { 
-                updateList(inputText)
-                setInputText("      ") 
+                dispatch({type : "add_todo" ,payload : {todoText : inputText}})
+                setInputText("") 
                 }}  > ADD </button>
         </div>
     )

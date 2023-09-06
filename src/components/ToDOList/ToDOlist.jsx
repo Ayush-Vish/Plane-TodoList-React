@@ -1,8 +1,20 @@
 import { useContext } from "react"
 import Todo from "../TOdo/Todo"
 import todoContext from "../../context/todoContext"
+import TodoDispatchContext from "../../context/TodoDispatchContext"
 function ToDoList (  ) {
-    const {  list, setList } = useContext(todoContext)
+    const {  list } = useContext(todoContext)
+    const {dispatch } = useContext(TodoDispatchContext)
+    function onFinished (isFinished ,todo) {
+        dispatch({type : "on_finished" ,payload : {isFinished : isFinished, todo }})
+    }
+    function onDelete (todo) { 
+        dispatch({type : "delete_todo" ,payload : {todo}})
+
+    }
+    function onEdit(todo ,todoText) {
+        dispatch({type : "edit_todo" ,payload : {todo , todoText}})
+    }
     return (
         <div>
             {
@@ -12,34 +24,9 @@ function ToDoList (  ) {
                                     key={todo.id}
                                     isFinished={todo.finished}
                                     todoData={todo.todoData}
-                                    changeFinished = {(isFinished ) => {
-                                        const updatedList =list.map(t => {
-                                            if(t.id == todo.id) {
-                                                todo.finished = isFinished 
-                                            }
-                                            return t 
-
-                                        })
-                                        setList(updatedList)
-                                    }
-                                    }
-                                    onDelete = { () => {
-                                        const updatedList = list.filter((e) => e.id != todo.id)
-                                        setList(updatedList)
-                                    }
-                                    }
-                                    onEdit = {
-                                        (todoText) => { 
-                                            const updatedList = list.map ((t) => { 
-                                                    if(t.id === todo.id) {
-                                                        todo.todoData =todoText
-                                                    }
-                                                    return t ; 
-
-                                            })
-                                            setList(updatedList)
-                                        }
-                                    }
+                                    changeFinished = { (isFinished) => onFinished(isFinished , todo)}
+                                    onDelete = { () => onDelete(todo)}
+                                    onEdit = {(todoText) => onEdit(todo, todoText)}
                                     /> )  
             }
         </div>
