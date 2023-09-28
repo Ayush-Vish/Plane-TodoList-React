@@ -1,4 +1,4 @@
-function todoReducers ( state , action )  {
+function todoReducers ( state =[] , action )  {
     if(action.type =="add_todo" ) {
         // Like we will get the arguments of the particular function in the action.payload 
         let todoText = action.payload.todoText; 
