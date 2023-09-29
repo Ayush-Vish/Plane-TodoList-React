@@ -20,7 +20,9 @@ function App() {
   // and takes reducer file name  and initail object
    
   // const [list , dispatch ] = useReducer(todoReducers , [])
+  // 
   const dispatch = useDispatch(); 
+
   const actions = bindActionCreators({ addTodo , deleteTodo , editTodo , todofinished} , dispatch )
 
 
@@ -32,7 +34,7 @@ function App() {
             deleteTodo={actions.deleteTodo}
             editTodo = {actions.editTodo} 
             todofinished = {actions.todofinished} 
-            
+
           />
         </>
       

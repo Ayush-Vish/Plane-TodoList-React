@@ -14,7 +14,11 @@ function AddToDo ({addTodo}) {
             <button onClick={()=> { 
                 addTodo(inputText)
                 setInputText("") 
-                }}  > ADD </button>
+                
+                }
+                
+                
+                }  > ADD </button>
         </div>
     )
 }
