@@ -1,9 +1,9 @@
-import {createStore ,combineReducers} from "redux"
+// import {createStore ,combineReducers} from "redux"
 
 // reducers import 
-import todoReducers from "./reducers/todoReducer"
+// import todoReducers from "./reducers/todoReducer"
 
-const reducers = combineReducers ({todo : todoReducers}) 
+// const reducers = combineReducers ({todo : todoReducers}) 
 
 // We are doing this without redux toolkit  
 // const store =createStore(reducers) 
@@ -20,10 +20,12 @@ const store = configureStore({
 
     }
     , 
-    devTools:  process.env.NODE_ENV !== "production" 
+    devTools:  true
     
 })
 
 
 
 export default store 
+
+// process.env.NODE_ENV !== "production" /

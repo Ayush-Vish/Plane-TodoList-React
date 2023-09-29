@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    todo : [] 
+    todoList : [] 
 }
 
 const todoSlice = createSlice({
@@ -10,15 +10,15 @@ const todoSlice = createSlice({
     reducers:  {
         addTodo : (state ,action) => { 
             let todoText = action.payload.todoText
-            state.push({id: state.todo.length +1 , todoData : todoText ,finished: false} ) 
+            state.todoList.push({id: state.todoList.length +1 , todoData : todoText ,finished: false} ) 
 
         }, 
         editTodo : (state ,action ) =>  {
             let todoText = action.payload.todoText 
             let todo  = action.payload.todo
-            state.todo=  state.todo.map(t => {
+            state.todoList=  state.todoList.map(t => {
                 if(t.id == todo.id) {
-                    todo.todoData = todoText
+                    t.todoData = todoText
                 }
                 return t ; 
             })
@@ -26,16 +26,16 @@ const todoSlice = createSlice({
         todoFinished : (state ,action ) => { 
             let  isFinished =  action.payload.onFinished 
             const todo = action.payload.todo 
-            state.todo  =state.todo.map(t => {
+            state.todoList  =state.todoList.map(t => {
                 if(t.id == todo.id) {
-                    todo.finished = isFinished 
+                    t.finished = isFinished 
                 }
                 return t 
             })
         }, 
         deleteTodo : (state , action ) => { 
             let todo = action.payload.todo 
-            state.todo = state.todo.filter(t => t.id != todo.id) 
+            state.todoList = state.todoList.filter(t => t.id != todo.id) 
         }
     }
 })

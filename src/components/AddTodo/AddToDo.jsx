@@ -12,7 +12,7 @@ function AddToDo ({addTodo}) {
             onChange={(e)=> setInputText(e.target.value)}
              />
             <button onClick={()=> { 
-                addTodo(inputText)
+                addTodo({todoText : inputText})
                 setInputText("") 
                 
                 }
